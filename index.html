@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue_todoList</title>
+    <link href="./css/my.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <header id="header">todoList</header>
+    <section id="section">
+        <div class="add">
+            <input
+                    placeholder="添加任务"
+                    v-on:keyup.enter="addTodo"
+                    v-model="todo"
+            />
+        </div>
+        <div class="btn"  v-show="list.length">
+            <button id="all" ><a href="#all">所有任务</a></button>
+            <button id="done"><a href="#done">已完成任务</a></button>
+            <button id="todo"><a href="#todo">未完成任务</a></button>
+        </div>
+        <ul class="lists">
+            <li v-for="item in filterList" :class="{completed:item.isChecked}">
+                 <div class="view">
+                     <input class="toggle" type="checkbox" v-model="item.isChecked"/>
+                     <label class="text">{{item.title}}</label>
+                     <button class="destroy" @click="deleteTodo(item)">x</button>
+                 </div>
+            </li>
+        </ul>
+    </section>
+    <footer id="footer">Copyright@ypj</footer>
+
+
+<script src="./js/index.js"></script>
+</body>
+</html>
